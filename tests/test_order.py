@@ -14,7 +14,7 @@ class TestOrder:
         order_page.go_to_site()
         order_page.click_order_button_in_head()
 
-        assert driver.current_url == configuration.URL+configuration.order
+        assert order_page.get_current_url() == configuration.URL+configuration.order
 
     @allure.title('Проверка кнопки «Заказать» внизу страницы')
     def test_order_button_in_middle_page(self, driver):
@@ -22,7 +22,7 @@ class TestOrder:
         order_page.go_to_site()
         order_page.click_order_button_in_middle_page()
 
-        assert driver.current_url == configuration.URL+configuration.order
+        assert order_page.get_current_url() == configuration.URL+configuration.order
 
     @allure.title('Проверка заказа самоката')
     @pytest.mark.parametrize('name, surname, address, metro_station, phone, date, comment', [test_data.test_data_1, test_data.test_data_2])
@@ -44,7 +44,7 @@ class TestOrder:
         order_page.click_order_button_in_head()
         order_page.click_to_element(base_page_locators.scooter_logo)
 
-        assert driver.current_url == configuration.URL
+        assert order_page.get_current_url() == configuration.URL
 
     @allure.title('Проверка перехода на главную страницу Дзена при клике на логотип Яндекса')
     def test_yandex_button(self, driver):
@@ -52,4 +52,4 @@ class TestOrder:
         order_page.go_to_site()
         order_page.click_yandex_logo()
 
-        assert driver.current_url == configuration.url_dzen
+        assert order_page.get_current_url() == configuration.url_dzen
